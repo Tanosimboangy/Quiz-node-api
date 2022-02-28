@@ -1,0 +1,28 @@
+{
+  "name": "quiz_node_api",
+  "version": "1.0.0",
+  "description": "It is just a trial for learning Express with mongoDB",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tanosimboangy/Quiz_node_api.git"
+  },
+  "author": "Jacquit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tanosimboangy/Quiz_node_api/issues"
+  },
+  "homepage": "https://github.com/Tanosimboangy/Quiz_node_api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
