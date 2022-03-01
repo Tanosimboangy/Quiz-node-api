@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const QuestionSchema = new mongoose.Schema({
     description: String,
+    number: Number,
     alternatives: [
         {
             text: {

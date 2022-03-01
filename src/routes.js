@@ -33,10 +33,12 @@ router.get('/questions/:id', async (req, res) => {
 router.post('/questions', async (req, res) => {
     try {
         const { description } = req.body
+        const { number } = req.body
         const { alternatives } = req.body
 
         const question = await Question.create({
             description,
+            number,
             alternatives
         })
         return res.status(200).json(question)
@@ -49,19 +51,19 @@ router.post('/questions', async (req, res) => {
 router.put('/questions/:id', async (req, res) => {
     try {
         const _id = req.params.id 
-        const { description, alternatives } = req.body
-        console.log(description, alternatives);
+        const { description, number, alternatives } = req.body
 
         let question = await Question.findOne({_id})
-
         if(!question){
             question = await Question.create({
                 description,
+                number,
                 alternatives
             })    
             return res.status(201).json(question)
         }else{
             question.description = description
+            question.description = number
             question.alternatives = alternatives
             await question.save()
             return res.status(200).json(question)
@@ -72,8 +74,19 @@ router.put('/questions/:id', async (req, res) => {
 })
 
 // delete one quiz question
-router.delete('/questions/:id', (req, res) => {
-
+router.delete('/questions/:id', async (req, res) => {
+    try {
+        const _id = req.params.id 
+        const question = await Question.deleteOne({_id})
+        console.log(question);
+        if(question.deletedCount === 0){
+            return res.status(404).json()
+        }else{
+            return res.status(204).json()
+        }
+    } catch (error) {
+        return res.status(500).json({"error":error})
+    }
 })
 
 module.exports = router
